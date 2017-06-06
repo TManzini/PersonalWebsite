@@ -18,10 +18,10 @@ a,a.active,a:active,a:focus,a:hover{
 h1,h2,h3,h4,h5,h6{
 		font-family:Montserrat,'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:700;text-transform:uppercase
 	}
-hr.star-light,hr.star-primary{
+hr.star-light,hr.star-primary,hr.star-bright{
 		max-width:250px;margin:25px auto 30px;padding:0;text-align:center;border:none;border-top:solid 5px
 	}
-hr.star-light:after,hr.star-primary:after{
+hr.star-light:after,hr.star-primary:after,hr.star-bright:after{
 		font-family:FontAwesome;font-size:2em;position:relative;top:-.8em;display:inline-block;padding:0 .25em;content:'\f005'
 	}
 hr.star-light{
@@ -36,6 +36,13 @@ hr.star-primary{
 hr.star-primary:after{
 		color:#000000;background-color:#fff
 	}
+hr.star-bright{
+		border-color:#000000
+	}
+hr.star-bright:after{
+		color:#000000;background-color:#DDDDDD
+	}
+
 .img-centered{
 		margin:0 auto
 	}
@@ -107,7 +114,7 @@ section.success{
 		font-size:2em;-webkit-transition:all .3s;-moz-transition:all .3s;transition:all .3s
 	}
 	#mainNav .navbar-nav>li.nav-item>a.nav-link.active{
-		color:#fff;border-radius:3px;background:#18bc9c
+		color:#fff;border-radius:3px;background:#555555
 	}
 	#mainNav .navbar-nav>li.nav-item>a.nav-link.active:active,#mainNav .navbar-nav>li.nav-item>a.nav-link.active:focus,#mainNav .navbar-nav>li.nav-item>a.nav-link.active:hover{
 		color:#fff;background:#555555
@@ -124,28 +131,47 @@ header.masthead{
 		text-align:center;color:#000000;background:
 	}
 header.masthead .container{
-		padding-top:100px;padding-bottom:50px
+		padding-top:100px;padding-bottom:50px;
 	}
 header.masthead img{
 		display:block;margin:0 auto 20px
 	}
 header.masthead .intro-text .name{
-		font-family:Montserrat,'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:2em;font-weight:700;display:block;text-transform:uppercase
+		font-family:Montserrat,'Helvetica Neue',Helvetica,Arial,sans-serif;
+		font-size:2em;
+		font-weight:700;
+		display:block;
+		text-transform:uppercase;
+		color: white;
+		text-shadow:
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;  
+
 	}
 header.masthead .intro-text .skills{
-		font-size:1.25em;font-weight:300
+		font-size:1.25em;
+		font-weight:300;
+		color: white;
+		text-shadow:
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000; 
 	}
 
 
 @media (min-width:768px){
 		header.masthead .container{
-		padding-top:200px;padding-bottom:100px
+		padding-top:200px;padding-bottom:100px;
 	}
 header.masthead .intro-text .name{
 		font-size:4.75em
 	}
 header.masthead .intro-text .skills{
 		font-size:1.75em
+
 	}
 }
 
@@ -226,7 +252,7 @@ header.masthead .intro-text .skills{
 	top:0;opacity:1
 }
 .floating-label-form-group-with-focus label{
-	color:#18bc9c
+	color:#666666
 }
 form .row:first-child .floating-label-form-group{
 	border-top:1px solid #eee
