@@ -33,6 +33,36 @@
         }
     }
     </style>
+    <script type="text/javascript">
+         <!--
+            var element = null;
+            var fadeStart = window.innerHeight/5.0;
+            var invisibleThreshold = window.innerHeight/2.0-fadeStart;
+            var fadeRate = 1.25;
+            
+            function init(){
+               element = document.getElementById('intro');
+               element.style.position= 'relative'; 
+               element.style.left = '0px'; 
+            }
+            
+            function fadeOut(){
+                if(window.pageYOffset > fadeStart)
+                {
+                    var fadeVal = (window.pageYOffset-fadeStart);
+                    var opacity = (fadeRate*(invisibleThreshold-fadeVal))/invisibleThreshold;
+                    element.style.opacity = opacity
+                }
+                else
+                {
+                    element.style.opacity = 1
+                }
+            }
+            
+            window.onload =init;
+            window.onscroll =fadeOut;
+         //-->
+      </script> 
 
 </head>
 
@@ -76,8 +106,8 @@
     </style>
         <div class="bgimg"></div>
         <div>
-            <div class="container">
-                <img class="img-fluid" src="img/profile.png" alt="" width="25%" height="25%">
+            <div class="container" id="intro">
+                <img id="profile" class="img-fluid" src="img/profile.png" alt="" width="25%" height="25%">
                 <div class="intro-text">
                     <span class="name">Thomas Manzini</span>
                     <br>
