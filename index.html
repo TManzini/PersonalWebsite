@@ -36,37 +36,80 @@
     <script type="text/javascript">
          <!--
             var element = null;
-            var fadeStart = window.innerHeight/5.0;
-            var invisibleThreshold = window.innerHeight/2.0-fadeStart;
             var fadeRate = 1.25;
             
             function init(){
                element = document.getElementById('intro');
                element.style.position= 'relative'; 
                element.style.left = '0px'; 
+
+               bg1 = document.getElementById("bg1")
+               about = document.getElementById('about_section');
+               scroll();
             }
             
             function fadeOut(){
+                var fadeStart = window.innerHeight/5.0;
+                var invisibleThreshold = window.innerHeight/2.0-fadeStart;
                 if(window.pageYOffset > fadeStart)
                 {
                     var fadeVal = (window.pageYOffset-fadeStart);
                     var opacity = (fadeRate*(invisibleThreshold-fadeVal))/invisibleThreshold;
-                    element.style.opacity = opacity
+                    element.style.opacity = opacity;
                 }
                 else
                 {
                     element.style.opacity = 1
                 }
             }
+            function moveBg()
+            {
+                var y = about.offsetTop;
+                var scrolly = window.pageYOffset;
+                var aboutStart = scrolly-y;
+                var aboutEnd = aboutStart + about.offsetHeight;
+                bg1.style.height = (-1*aboutStart) + 'px';
+                bg1.style.width = window.innerWidth + 'px';
+            }
+
+            function scroll()
+            {
+                fadeOut();
+                moveBg();
+            }
             
             window.onload =init;
-            window.onscroll =fadeOut;
+            window.onscroll =scroll;
+            window.onresize =scroll;
          //-->
       </script> 
 
 </head>
 
 <body class="index" id="page-top">
+    <style type="text/css">
+    .bgimg {
+        background-image: url('img/bg.jpg');
+        background-size:cover;
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        z-index: -2;
+        overflow: hidden;
+    }
+
+    </style>
+    <!-- This is the transperancy -->
+    <div id="bg1" style="visibility: visible; position: fixed; overflow: hidden; z-index: -1;">
+        <!-- This is the image -->
+        <div id="bg1_im" style="position: absolute; visibility: visible;"></div>
+        <img src="img/banner.jpg" alt="" style="object-fit:cover; width: 100%; height: 100%;">
+    </div>
+
+    <div class="bgimg"></div>
+
+
+
 
     <!-- Navigation -->
     <nav class="navbar fixed-top navbar-toggleable-md navbar-light" id="mainNav">
@@ -93,18 +136,6 @@
 
     <!-- Header -->
     <header class="masthead">
-    <style type="text/css">
-    .bgimg {
-        background-image: url('img/bg.jpg');
-        background-size:cover;
-        position: fixed;
-        width: 100%;
-        height: 100%;
-        z-index: -1;
-    }
-
-    </style>
-        <div class="bgimg"></div>
         <div>
             <div class="container" id="intro">
                 <img id="profile" class="img-fluid" src="img/profile.png" alt="" width="25%" height="25%">
@@ -120,7 +151,7 @@
     </header>
 
     <!-- About Section -->
-    <section class="success" id="about">
+    <section class="success" id="about_section" >
         <div class="container">
             <h2 class="text-center">About</h2>
             <hr class="star-light">
@@ -142,15 +173,23 @@
     </section>
     
     <style>
-        .portColor { background-color: #DDDDDD;z-index:10;}
+        .portColor { background-color: transparent;z-index:10;}
+    </style>
+    <style>
+        .portText  { color: white;
+                     text-shadow:
+                -1px -1px 0 #000,
+                1px -1px 0 #000,
+                -1px 1px 0 #000,
+                1px 1px 0 #000;}
     </style>
 
     <!-- Portfolio Grid Section -->
     <div class="portColor">
         <section id="portfolio">
             <div class="container">
-                <h2 class="text-center">Portfolio</h2>
-                <hr class="star-bright">
+                <center><h2 class="portText">Portfolio</h2></center>
+                <br>
                 <div class="row">
                     <div class="col-sm-4 portfolio-item">
                         <div class="portfolio-link" href="#portfolioModal4" data-toggle="modal">
@@ -159,9 +198,9 @@
                                     <i class="fa fa-search-plus fa-3x"></i>
                                 </div>
                             </div>
-                            <img class="img-fluid" src="img/portfolio/education_bg.png" alt="">
+                            <img class="img-fluid" src="img/portfolio/education_bg.png" alt="" style="box-shadow: 5px 5px 3px rgba(0, 0, 0, 0.5);">
                         </div>
-                        <center><br><h3>Education</h3></center>
+                        <center><br><h3 class="portText">Education</h3 class="portText"></center>
                     </div>
                     <div class="col-sm-4 portfolio-item">
                         <div class="portfolio-link" href="#portfolioModal2" data-toggle="modal">
@@ -170,9 +209,9 @@
                                     <i class="fa fa-search-plus fa-3x"></i>
                                 </div>
                             </div>
-                            <img class="img-fluid" src="img/portfolio/publications_bg.png" alt="">
+                            <img class="img-fluid" src="img/portfolio/publications_bg.png" alt="" style="box-shadow: 5px 5px 3px rgba(0, 0, 0, 0.5);">
                         </div>
-                        <center><br><h3>Publications</h3></center>
+                        <center><br><h3 class="portText">Publications</h3 class="portText"></center>
                     </div>
                     <div class="col-sm-4 portfolio-item">
                         <div class="portfolio-link" href="#portfolioModal1" data-toggle="modal">
@@ -181,9 +220,9 @@
                                     <i class="fa fa-search-plus fa-3x"></i>
                                 </div>
                             </div>
-                            <img class="img-fluid" src="img/portfolio/employment_bg.png" alt="">
+                            <img class="img-fluid" src="img/portfolio/employment_bg.png" alt="" style="box-shadow: 5px 5px 3px rgba(0, 0, 0, 0.5);">
                         </div>
-                        <center><br><h3>Employment</h3></center>
+                        <center><br><h3 class="portText">Employment</h3 class="portText"></center>
                     </div>
                     
                     <div class="col-sm-4 portfolio-item">
@@ -193,9 +232,9 @@
                                     <i class="fa fa-search-plus fa-3x"></i>
                                 </div>
                             </div>
-                            <img class="img-fluid" src="img/portfolio/awards_bg.png" alt="">
+                            <img class="img-fluid" src="img/portfolio/awards_bg.png" alt="" style="box-shadow: 5px 5px 3px rgba(0, 0, 0, 0.5);">
                         </div>
-                        <center><br><h3>Honors &amp; Awards</h3></center>
+                        <center><br><h3 class="portText">Honors &amp; Awards</h3 class="portText"></center>
                     </div>
                     <div class="col-sm-4 portfolio-item">
                         <div class="portfolio-link" href="#portfolioModal6" data-toggle="modal">
@@ -204,9 +243,9 @@
                                     <i class="fa fa-search-plus fa-3x"></i>
                                 </div>
                             </div>
-                            <img class="img-fluid" src="img/portfolio/volunteering_bg.png" alt="">
+                            <img class="img-fluid" src="img/portfolio/volunteering_bg.png" alt="" style="box-shadow: 5px 5px 3px rgba(0, 0, 0, 0.5);">
                         </div>
-                        <center><br><h3>Community Service</h3></center>
+                        <center><br><h3 class="portText">Community Service</h3 class="portText"></center>
                     </div>
                     <div class="col-sm-4 portfolio-item">
                         <div class="portfolio-link" href="#portfolioModal3" data-toggle="modal">
@@ -215,9 +254,9 @@
                                     <i class="fa fa-search-plus fa-3x"></i>
                                 </div>
                             </div>
-                            <img class="img-fluid" src="img/portfolio/camera_2_bg.png" alt="">
+                            <img class="img-fluid" src="img/portfolio/camera_2_bg.png" alt="" style="box-shadow: 5px 5px 3px rgba(0, 0, 0, 0.5);">
                         </div>
-                        <center><br><h3>Photography</h3></center>
+                        <center><br><h3 class="portText">Photography</h3 class="portText"></center>
                     </div>
                 </div>
             </div>
