@@ -38,14 +38,22 @@
             var element = null;
             var fadeRate = 1.25;
             
-            function init(){
-               element = document.getElementById('intro');
-               element.style.position= 'relative'; 
-               element.style.left = '0px'; 
+            var img_width  = 0;
+            var img_height = 0;
 
-               bg1 = document.getElementById("bg1")
-               about = document.getElementById('about_section');
-               scroll();
+            function init(){
+                element = document.getElementById('intro');
+                element.style.position= 'relative'; 
+                element.style.left = '0px'; 
+
+                bg1 = document.getElementById("bg1")
+                bg1_im = document.getElementById("bg1_im")
+
+                img_width = bg1_im.naturalWidth;
+                img_height = bg1_im.naturalHeight;
+
+                about = document.getElementById('about_section');
+                scroll();
             }
             
             function fadeOut(){
@@ -68,8 +76,35 @@
                 var scrolly = window.pageYOffset;
                 var aboutStart = scrolly-y;
                 var aboutEnd = aboutStart + about.offsetHeight;
-                bg1.style.height = (-1*aboutStart) + 'px';
+                var coverageTip = (aboutEnd-aboutStart)/16.0;
+                bg1.style.height = (-1*aboutStart + coverageTip) + 'px';
                 bg1.style.width = window.innerWidth + 'px';
+
+                var bg_ratio = (img_height+0.0)/(img_width+0.0)
+                var disp_ratio = (y+0.0)/(window.innerWidth+0.0)
+
+                if(disp_ratio>bg_ratio)
+                {
+                    bg1_im.style.height = y + coverageTip + 'px';
+                    bg1_im.style.width = y/bg_ratio + 'px';
+                }
+                else
+                {
+                    bg1_im.style.height = window.innerWidth*bg_ratio + coverageTip + 'px';
+                    bg1_im.style.width = window.innerWidth + 'px';
+                }
+                
+
+
+
+                if(aboutStart > 0)
+                {
+                    bg1.style.opacity = 0;
+                }
+                else
+                {
+                    bg1.style.opacity = 1;
+                }
             }
 
             function scroll()
@@ -100,12 +135,10 @@
 
     </style>
     <!-- This is the transperancy -->
-    <div id="bg1" style="visibility: visible; position: fixed; overflow: hidden; z-index: -1;">
+    <div id="bg1" style="visibility: visible; position: fixed; overflow: hidden; z-index: -1;top:'0px'">
         <!-- This is the image -->
-        <div id="bg1_im" style="position: absolute; visibility: visible;">
-            <img src="img/banner.jpg" alt="" style="object-fit:cover; width: 100%; height: 100%;">
-        </div>
-        <img src="img/banner.jpg" alt="" style="object-fit:cover; width: 100%; height: 100%;">
+        <div id="bg1_imdiv" style="position: fixed; visibility: visible;top:'0px'"></div>
+        <img id="bg1_im" src="img/banner.jpg" alt="" style="overflow: hidden;">
     </div>
 
     <div class="bgimg"></div>
