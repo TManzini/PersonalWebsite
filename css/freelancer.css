@@ -356,6 +356,30 @@ footer {
     border: solid 2px white;
     background: white; }
 
+.soft-btn-outline {
+  font-size: 20px;
+  margin-top: 15px;
+  transition: all .3s ease-in-out;
+  color: black;
+  border: solid 2px black;
+  background: transparent; }
+  .soft-btn-outline:hover, .soft-btn-outline:focus, .soft-btn-outline:active, .soft-btn-outline.active {
+    color: white;
+    border: solid 2px white;
+    background: black; }
+
+.paper-btn-outline {
+  font-size: 20px;
+  margin-top: 15px;
+  transition: all .3s ease-in-out;
+  color: black;
+  border: solid 2px black;
+  background: transparent; }
+  .paper-btn-outline:hover, .paper-btn-outline:focus, .paper-btn-outline:active, .paper-btn-outline.active {
+    color: white;
+    border: solid 2px white;
+    background: black; }
+
 .btn-primary {
   font-weight: 700;
   color: white;
